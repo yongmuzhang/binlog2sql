@@ -10,7 +10,7 @@ from pymysqlreplication.row_event import (
     DeleteRowsEvent,
 )
 from pymysqlreplication.event import QueryEvent, RotateEvent, FormatDescriptionEvent
-from binlog2sql_util import command_line_args, concat_sql_from_binlogevent, create_unique_file, reversed_lines
+from binlog2sql_util import command_line_args, concat_sql_from_binlogevent, create_unique_file, reversed_lines, get_db_config
 
 class Binlog2sql(object):
 
@@ -129,7 +129,9 @@ class Binlog2sql(object):
 if __name__ == '__main__':
 
     args = command_line_args(sys.argv[1:])
-    connectionSettings = {'host':args.host, 'port':args.port, 'user':args.user, 'passwd':args.password}
+    db_config = get_db_config()
+    connectionSettings = {'host': db_config['host'], 'port': int(db_config['port']), 'user': db_config['user'],
+                          'passwd': db_config['password']}
     binlog2sql = Binlog2sql(connectionSettings=connectionSettings, startFile=args.startFile,
                             startPos=args.startPos, endFile=args.endFile, endPos=args.endPos,
                             startTime=args.startTime, stopTime=args.stopTime, only_schemas=args.databases,

@@ -93,12 +93,12 @@ Create Table: CREATE TABLE `user` (
 
 > 真实的闪回场景中，最关键的是能快速筛选出真正需要回滚的SQL。
 
-我们使用开源工具[binlog2sql](https://github.com/danfengcao/binlog2sql)来进行实战演练。binlog2sql由美团点评DBA团队(上海)出品，多次在线上环境做快速回滚。
+我们使用开源工具[binlog2sql](https://github.com/yongmuzhang/binlog2sql)来进行实战演练。binlog2sql由美团点评DBA团队(上海)出品，多次在线上环境做快速回滚。
 
 首先我们安装binlog2sql：
 
 ```
-shell> git clone https://github.com/danfengcao/binlog2sql.git && cd binlog2sql
+shell> git clone https://github.com/yongmuzhang/binlog2sql.git && cd binlog2sql
 shell> pip install -r requirements.txt
 ```
 

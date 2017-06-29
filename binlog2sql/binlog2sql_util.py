@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os, sys, argparse, datetime
+import ConfigParser
 import pymysql
 from pymysqlreplication import BinLogStreamReader
 from pymysqlreplication.row_event import (
@@ -91,6 +92,18 @@ def command_line_args(args):
         raise ValueError('Incorrect datetime argument')
     return args
 
+def get_db_config():
+    db_config = {}
+    config = ConfigParser.ConfigParser()
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    db_config_file = open(base_dir + "/config/application.conf", "rb")
+    config.readfp(db_config_file)
+    db_config['host'] = config.get("db", "host")
+    db_config['user'] = config.get("db", "user")
+    db_config['password'] = config.get("db", "password")
+    db_config['port'] = config.get("db", "port")
+    db_config_file.close()
+    return db_config
 
 def compare_items((k, v)):
     #caution: if v is NULL, may need to process

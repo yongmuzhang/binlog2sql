@@ -24,9 +24,12 @@ binlog2sql
 ==============
 
 ```
-shell> git clone https://github.com/danfengcao/binlog2sql.git && cd binlog2sql
+shell> git clone https://github.com/yongmuzhang/binlog2sql.git && cd binlog2sql
 shell> pip install -r requirements.txt
+
+config/application.conf 文件中填写数据库的相关配置
 ```
+
 git与pip的安装问题请自行搜索解决。
 
 使用
@@ -81,10 +84,6 @@ UPDATE `test`.`test3` SET `addtime`='2016-12-10 13:03:22', `data`='中文', `id`
 ```
 
 ### 选项
-
-**mysql连接配置**
-
--h host; -P port; -u user; -p password
 
 **解析模式**
 
